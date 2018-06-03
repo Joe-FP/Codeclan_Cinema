@@ -10,76 +10,59 @@ Film.delete_all()
 Screening.delete_all()
 Ticket.delete_all()
 
-# add customers
+# add customers (3)
 customer1 = Customer.new({'name'=>'Customer1', 'funds'=>50})
 customer1.save()
 customer2 = Customer.new({'name'=>'Customer2', 'funds'=>100})
 customer2.save()
 customer3 = Customer.new({'name'=>'Customer3', 'funds'=>150})
 customer3.save()
-customer4 = Customer.new({'name'=>'Customer4', 'funds'=>200})
-customer4.save()
-customer5 = Customer.new({'name'=>'Customer5', 'funds'=>250})
-customer5.save()
 
-# add films
+# add films (2)
 film1 = Film.new({'title'=>'film1', 'price'=>10})
 film1.save()
 film2 = Film.new({'title'=>'film2', 'price'=>15})
 film2.save()
-film3 = Film.new({'title'=>'film3', 'price'=>20})
-film3.save()
-film4 = Film.new({'title'=>'film4', 'price'=>25})
-film4.save()
-film5 = Film.new({'title'=>'film5', 'price'=>30})
-film5.save()
 
-# add screenings
-screening1_film1 = Screening.new({'time'=>'9:00', 'film_id'=>film1.id})
+# # add screenings (2 per film)
+screening1_film1 = Screening.new({'time'=>'9:00','film_id'=>film1.id})
 screening1_film1.save()
-screening2_film1 = Screening.new({'time'=>'10:30', 'film_id'=>film1.id})
+screening2_film1 = Screening.new({'time'=>'10:30','film_id'=>film1.id})
 screening2_film1.save()
-screening1_film2 = Screening.new({'time'=>'9:00', 'film_id'=>film2.id})
+screening1_film2 = Screening.new({'time'=>'9:00','film_id'=>film2.id})
 screening1_film2.save()
-screening2_film2 = Screening.new({'time'=>'10:30', 'film_id'=>film2.id})
+screening2_film2 = Screening.new({'time'=>'10:30','film_id'=>film2.id})
 screening2_film2.save()
-screening1_film3 = Screening.new({'time'=>'9:00', 'film_id'=>film3.id})
-screening1_film3.save()
-screening2_film3 = Screening.new({'time'=>'10:30', 'film_id'=>film3.id})
-screening2_film3.save()
-screening1_film4 = Screening.new({'time'=>'9:00', 'film_id'=>film4.id})
-screening1_film4.save()
-screening2_film4 = Screening.new({'time'=>'10:30', 'film_id'=>film4.id})
-screening2_film4.save()
-screening1_film5 = Screening.new({'time'=>'9:00', 'film_id'=>film5.id})
-screening1_film5.save()
-screening2_film5 = Screening.new({'time'=>'10:30', 'film_id'=>film5.id})
-screening2_film5.save()
 
 # add tickets
 ticket1 = Ticket.new({'customer_id'=>customer1.id, 'film_id'=>film1.id, 'screening_id'=>screening1_film1.id})
 ticket1.save()
-ticket2 = Ticket.new({'customer_id'=>customer2.id, 'film_id'=>film2.id, 'screening_id'=>screening1_film2.id})
+ticket2 = Ticket.new({'customer_id'=>customer2.id, 'film_id'=>film1.id, 'screening_id'=>screening1_film1.id})
 ticket2.save()
-ticket3 = Ticket.new({'customer_id'=>customer3.id, 'film_id'=>film3.id, 'screening_id'=>screening1_film3.id})
+ticket3 = Ticket.new({'customer_id'=>customer3.id, 'film_id'=>film1.id, 'screening_id'=>screening2_film1.id})
 ticket3.save()
-ticket4 = Ticket.new({'customer_id'=>customer4.id, 'film_id'=>film4.id, 'screening_id'=>screening1_film4.id})
+ticket4 = Ticket.new({'customer_id'=>customer2.id, 'film_id'=>film2.id, 'screening_id'=>screening2_film2.id})
 ticket4.save()
-ticket5 = Ticket.new({'customer_id'=>customer5.id, 'film_id'=>film5.id, 'screening_id'=>screening1_film5.id})
+ticket5 = Ticket.new({'customer_id'=>customer3.id, 'film_id'=>film1.id, 'screening_id'=>screening1_film1.id})
 ticket5.save()
-ticket6 = Ticket.new({'customer_id'=>customer1.id, 'film_id'=>film2.id, 'screening_id'=>screening2_film2.id})
-ticket6.save()
-ticket7 = Ticket.new({'customer_id'=>customer2.id, 'film_id'=>film3.id, 'screening_id'=>screening2_film3.id})
-ticket7.save()
-ticket8 = Ticket.new({'customer_id'=>customer3.id, 'film_id'=>film4.id, 'screening_id'=>screening2_film4.id})
-ticket8.save()
-ticket9 = Ticket.new({'customer_id'=>customer4.id, 'film_id'=>film5.id, 'screening_id'=>screening2_film5.id})
-ticket9.save()
-ticket10 = Ticket.new({'customer_id'=>customer5.id, 'film_id'=>film1.id, 'screening_id'=>screening2_film1.id})
-ticket10.save()
-ticket11 = Ticket.new({'customer_id'=>customer4.id, 'film_id'=>film1.id, 'screening_id'=>screening2_film1.id})
-ticket10.save()
 
+# -------------------------
+# Test some CRUD actions.
+# -------------------------
+
+# customer1.delete() # should remove ticket1
+# customer2.name = "Joe"
+# customer2.update()
+#
+# film2.delete() # should remove ticket4, screening1_film2, screening2_film2
+# film1.title = "film1 new title"
+# film1.update()
+#
+# screening1_film1.delete() #should remove ticket2
+# screening2_film1.time = "14:00"
+# screening2_film1.update()
+#
+# ticket5.delete() # only ticket4 is left
 
 binding.pry
 nil

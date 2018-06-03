@@ -29,7 +29,7 @@ class Customer
   end
 
   def delete()
-    sql = "DELETE * FROM customers WHERE id = $1"
+    sql = "DELETE FROM customers WHERE id = $1"
     values = [@id]
     SqlRunner.run(sql, values)
   end
@@ -61,6 +61,11 @@ class Customer
 
   def ticket_count()
     self.tickets.count
+    # - OR -
+    # sql = "SELECT COUNT(*) FROM tickets WHERE customer_id = $1"
+    # values = [@id]
+    # num = SqlRunner.run(sql, values)[0]['count'].to_i
+    # which is better?
   end
 
   # --------------------
